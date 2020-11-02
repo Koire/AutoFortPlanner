@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>War Dragons Auto Fortification Planner</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<template id="towerSelector">
+    <label>
+        <select >
+            <option value="Archer">Archer</option>
+            <option value="Ballista">Ballista</option>
+            <option value="Blue Mage">Blue Mage</option>
+            <option value="Cannon">Cannon</option>
+            <option value="Dark Pylon">Dark Pylon</option>
+            <option value="Farm">Farm</option>
+            <option value="Flak (Dark)">Flak (Dark)</option>
+            <option value="Flak (Earth)">Flak (Earth)</option>
+            <option value="Flak (Electro)">Flak (Electro)</option>
+            <option value="Flak (Fire)">Flak (Fire)</option>
+            <option value="Flak (Ice)">Flak (Ice)</option>
+            <option value="Howitzer">Howitzer</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Mill">Mill</option>
+            <option value="Perch (1)">Perch (1)</option>
+            <option value="Perch (2)">Perch (2)</option>
+            <option value="Perch (3)">Perch (3)</option>
+            <option value="Red Mage">Red Mage</option>
+            <option value="Storm">Storm</option>
+            <option value="Totem">Totem</option>
+            <option value="Trebuchet">Trebuchet</option>
+            <option value="Turret (Fire)">Turret (Fire)</option>
+            <option value="Turret (Ice)">Turret (Ice)</option>
+            <option value="Breeding">Breeding</option>
+            <option value="Builder">Builder</option>
+            <option value="Den">Den</option>
+            <option value="Forge">Forge</option>
+            <option value="Incubator">Incubator</option>
+            <option value="Research">Research</option>
+            <option value="Storage">Storage</option>
+            <option value="</select>"></select></option>
+    </label>
+    <label>
+        Level:
+        <input type="number" />
+    </label>
+    <button>+</button>
+</template>
+    <div class="mainLayout">
+        <div>
+            <h2>Choose your towers</h2>
+            <div id="selectedTowers">
+            </div>
+        </div>
+        <div>
+            <h2>Input your Timers</h2>
+            <div id="timerSettings"></div>
+        </div>
+        <div>
+            <h2>Set your target</h2>
+            <label>
+                <select>
+                    <option>Score</option>
+                    <option>Points</option>
+                    <option>XP</option>
+                    <option>AP + HP</option>
+                </select>
+            </label>
+            <label>
+                <input type="number" />
+            </label>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
