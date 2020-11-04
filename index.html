@@ -10,7 +10,7 @@
 </head>
 <body>
 <template id="timerSelector">
-    <li>
+    <li class="collection-item">
         <div class="row">
         <div class="input-field">
             <label></label>
@@ -20,7 +20,7 @@
     </li>
 </template>
 <template id="towerSelector">
-    <li>
+    <li class="collection-item">
         <div class="row">
             <div class="input-field col s5">
                 <select>
@@ -64,15 +64,15 @@
                 </label>
             </div>
             <div class="col s2 input-field">
-                <button class="waves-effect waves-light btn-large btn-flat cyan">+</button>
+                <button class="waves-effect waves-light btn btn-flat cyan">+</button>
             </div>
         </div>
     </li>
 </template>
 <template id="researchSelection">
-    <li>
-        <input type="checkbox" />
+    <li class="collection-item">
         <label>
+        <input type="checkbox" />
             <span></span>
         </label>
     </li>
@@ -80,39 +80,60 @@
     <main class="container">
         <div>
             <h2>Choose your towers</h2>
-            <div id="selectedTowers">
-            </div>
+            <ul class="collection" id="selectedTowers"></ul>
         </div>
         <div>
             <h2>Input your Timers</h2>
-            <ul id="timerSettings"></ul>
+            <ul class="collection" id="timerSettings"></ul>
 
         </div>
         <div>
             <h2>Planner Settings</h2>
+            <h3>Current Player Level</h3>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="currentLevel" type="number">
+                    <label for="currentLevel">Level</label>
+                </div>
+                <div>
+                    <div class="input-field col s6">
+                        <input id="xpToNext" type="number">
+                        <label for="xpToNext">XP Remaining</label>
+                    </div>
+                </div>
+            </div>
             <h3>What level of research?</h3>
-            <ul id="researchLevels"></ul>
-            <ul>
-                <li>
-                    <label>
-                        <span>Rider Research</span>
-                        <input id="riderResearch" value="0">
-                        <span>%</span>
-                    </label>
+            <ul class="collection" id="researchLevels">
+                <li class="row input-field collection-item">
+                    <label for="riderResearch" class="active">Rider Research</label>
+                    <select id="riderResearch">
+                        <option value="7">7%</option>
+                        <option value="10">10%</option>
+                        <option value="12">12%</option>
+                    </select>
                 </li>
             </ul>
-            <h2>Target for the Calculator:</h2>
-            <label>
-                <select>
-                    <option>Score</option>
-                    <option>Points</option>
-                    <option>XP</option>
-                    <option>AP + HP</option>
-                </select>
-            </label>
-            <label>
-                <input type="number" />
-            </label>
+
+<!--            <h3>Target for the Calculator:</h3>-->
+<!--            <div class="row input-field">-->
+<!--                <div class="input-field col s6">-->
+<!--                    <label>-->
+<!--                        <select>-->
+<!--                            <option>Score</option>-->
+<!--                            <option>Points</option>-->
+<!--                            <option>XP</option>-->
+<!--                            <option>AP + HP</option>-->
+<!--                        </select>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                <div class="input-field col s6">-->
+<!--                    <input type="number" />-->
+<!--                    <label>Target</label>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <button class="btn waves-light waves-effect teal">Calculate</button>
+            </div>
         </div>
     </main>
     <!-- Compiled and minified JavaScript -->

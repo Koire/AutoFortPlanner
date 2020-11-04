@@ -140,9 +140,11 @@ function docReady(fn) {
   } else {
     document.addEventListener("DOMContentLoaded", fn);
   }
-} // docReady(() => M.AutoInit())
+}
 
-
+docReady(function () {
+  return M.AutoInit();
+});
 var selectedTowers = document.getElementById("selectedTowers");
 var timerSettings = document.getElementById("timerSettings");
 
@@ -188,7 +190,7 @@ var timerField = function timerField(time, modifier) {
   clone.querySelector("input").addEventListener('blur', function (_ref) {
     var value = _ref.target.value;
 
-    if (value.length == 0) {
+    if (value.length === 0) {
       label.classList.remove("active");
     }
   });
@@ -213,7 +215,7 @@ var researchField = function researchField(researchName) {
   return clone;
 };
 
-(_document$getElementB = document.getElementById("researchLevels")).append.apply(_document$getElementB, _toConsumableArray(researchLevels.map(researchField)));
+(_document$getElementB = document.getElementById("researchLevels")).prepend.apply(_document$getElementB, _toConsumableArray(researchLevels.map(researchField)));
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -242,7 +244,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33803" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45427" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

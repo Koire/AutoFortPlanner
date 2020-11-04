@@ -7,7 +7,7 @@ function docReady(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }
-// docReady(() => M.AutoInit())
+docReady(() => M.AutoInit())
 
 
 const selectedTowers = document.getElementById("selectedTowers")
@@ -43,7 +43,7 @@ const timerField = (time, modifier) => {
     label.textContent = `${time} ${modifier}`
     clone.querySelector("input").addEventListener('focus', e => label.classList.add("active"))
     clone.querySelector("input").addEventListener('blur', ({target: {value}}) => {
-        if(value.length == 0){
+        if(value.length === 0){
             label.classList.remove("active")
         }
     })
@@ -69,6 +69,6 @@ const researchField = researchName => {
     clone.querySelector("input").value = researchName
     return clone
 }
-document.getElementById("researchLevels").append(
+document.getElementById("researchLevels").prepend(
     ...researchLevels.map(researchField)
 )
