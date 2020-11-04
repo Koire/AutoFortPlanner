@@ -118,23 +118,53 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
+var _document$getElementB;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function docReady(fn) {
+  // see if DOM is already available
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    // call on next available tick
+    setTimeout(fn, 1);
+  } else {
+    document.addEventListener("DOMContentLoaded", fn);
+  }
+}
+
+docReady(function () {
+  return M.AutoInit();
+});
 var towerSelection = document.getElementById("towerSelector");
 var selectedTowers = document.getElementById("selectedTowers");
 var timerSettings = document.getElementById("timerSettings");
-selectedTowers.appendChild(towerSelection.content.cloneNode(true));
+
+var addATower = function addATower() {
+  var clone = towerSelection.content.cloneNode(true);
+  clone.querySelector("button").addEventListener("click", function () {
+    return selectedTowers.appendChild(addATower());
+  });
+  return clone;
+};
+
+selectedTowers.appendChild(addATower());
 var timerMins = [1, 3, 15, 30];
 var timerHrs = [1, 3, 12, 24, 48];
 
 var timerField = function timerField(time, modifier) {
-  var newNode = document.createElement("div");
-  var label = document.createElement("label");
-  var input = document.createElement("input", {
-    type: "number"
-  });
-  label.textContent = "".concat(time).concat(modifier);
-  label.appendChild(input);
-  newNode.appendChild(label);
-  return newNode;
+  var clone = document.getElementById("timerSelector").content.cloneNode(true);
+  clone.querySelector("span").textContent = "".concat(time, " ").concat(modifier);
+  return clone;
 };
 
 timerMins.forEach(function (time) {
@@ -143,6 +173,16 @@ timerMins.forEach(function (time) {
 timerHrs.forEach(function (time) {
   timerSettings.appendChild(timerField(time, "hr"));
 });
+var researchLevels = ["Red", "Blue", "Orange", "Green", "Platinum"];
+
+var researchField = function researchField(researchName) {
+  var clone = document.getElementById("researchSelection").content.cloneNode(true);
+  clone.querySelector("span").textContent = researchName;
+  clone.querySelector("input").value = researchName;
+  return clone;
+};
+
+(_document$getElementB = document.getElementById("researchLevels")).append.apply(_document$getElementB, _toConsumableArray(researchLevels.map(researchField)));
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -171,7 +211,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41663" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33803" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

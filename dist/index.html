@@ -1,51 +1,82 @@
 <html>
 <head>
     <title>War Dragons Auto Fortification Planner</title>
-    <link rel="stylesheet" href="/style.e308ff8e.css">
-<script src="/style.e308ff8e.js"></script></head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
-<template id="towerSelector">
-    <label>
-        <select>
-            <option value="Archer">Archer</option>
-            <option value="Ballista">Ballista</option>
-            <option value="Blue Mage">Blue Mage</option>
-            <option value="Cannon">Cannon</option>
-            <option value="Dark Pylon">Dark Pylon</option>
-            <option value="Farm">Farm</option>
-            <option value="Flak (Dark)">Flak (Dark)</option>
-            <option value="Flak (Earth)">Flak (Earth)</option>
-            <option value="Flak (Electro)">Flak (Electro)</option>
-            <option value="Flak (Fire)">Flak (Fire)</option>
-            <option value="Flak (Ice)">Flak (Ice)</option>
-            <option value="Howitzer">Howitzer</option>
-            <option value="Lightning">Lightning</option>
-            <option value="Mill">Mill</option>
-            <option value="Perch (1)">Perch (1)</option>
-            <option value="Perch (2)">Perch (2)</option>
-            <option value="Perch (3)">Perch (3)</option>
-            <option value="Red Mage">Red Mage</option>
-            <option value="Storm">Storm</option>
-            <option value="Totem">Totem</option>
-            <option value="Trebuchet">Trebuchet</option>
-            <option value="Turret (Fire)">Turret (Fire)</option>
-            <option value="Turret (Ice)">Turret (Ice)</option>
-            <option value="Breeding">Breeding</option>
-            <option value="Builder">Builder</option>
-            <option value="Den">Den</option>
-            <option value="Forge">Forge</option>
-            <option value="Incubator">Incubator</option>
-            <option value="Research">Research</option>
-            <option value="Storage">Storage</option>
-            <option value="</select>"></option></select>
-    </label>
-    <label>
-        Level:
-        <input type="number">
-    </label>
-    <button>+</button>
+<template id="timerSelector">
+    <li>
+        <label>
+            <span></span>
+            <input>
+        </label>
+    </li>
 </template>
-    <div class="mainLayout">
+<template id="towerSelector">
+    <li>
+        <div class="row">
+            <div class="col s5">
+                <label>
+                    <select>
+                        <option value="Archer">Archer</option>
+                        <option value="Ballista">Ballista</option>
+                        <option value="Blue Mage">Blue Mage</option>
+                        <option value="Cannon">Cannon</option>
+                        <option value="Dark Pylon">Dark Pylon</option>
+                        <option value="Farm">Farm</option>
+                        <option value="Flak (Dark)">Flak (Dark)</option>
+                        <option value="Flak (Earth)">Flak (Earth)</option>
+                        <option value="Flak (Electro)">Flak (Electro)</option>
+                        <option value="Flak (Fire)">Flak (Fire)</option>
+                        <option value="Flak (Ice)">Flak (Ice)</option>
+                        <option value="Howitzer">Howitzer</option>
+                        <option value="Lightning">Lightning</option>
+                        <option value="Mill">Mill</option>
+                        <option value="Perch (1)">Perch (1)</option>
+                        <option value="Perch (2)">Perch (2)</option>
+                        <option value="Perch (3)">Perch (3)</option>
+                        <option value="Red Mage">Red Mage</option>
+                        <option value="Storm">Storm</option>
+                        <option value="Totem">Totem</option>
+                        <option value="Trebuchet">Trebuchet</option>
+                        <option value="Turret (Fire)">Turret (Fire)</option>
+                        <option value="Turret (Ice)">Turret (Ice)</option>
+                        <option value="Breeding">Breeding</option>
+                        <option value="Builder">Builder</option>
+                        <option value="Den">Den</option>
+                        <option value="Forge">Forge</option>
+                        <option value="Incubator">Incubator</option>
+                        <option value="Research">Research</option>
+                        <option value="Storage">Storage</option>
+                    </select>
+                </label>
+            </div>
+            <div class="col s5">
+                <label>
+                    Level:
+                    <input type="number">
+                </label>
+            </div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn-large btn-flat cyan">+</button>
+            </div>
+        </div>
+    </li>
+</template>
+<template id="researchSelection">
+    <li>
+        <label>
+            <input type="checkbox">
+            <span></span>
+        </label>
+    </li>
+</template>
+    <main class="container">
         <div>
             <h2>Choose your towers</h2>
             <div id="selectedTowers">
@@ -53,10 +84,23 @@
         </div>
         <div>
             <h2>Input your Timers</h2>
-            <div id="timerSettings"></div>
+            <ul id="timerSettings"></ul>
+
         </div>
         <div>
-            <h2>Set your target</h2>
+            <h2>Planner Settings</h2>
+            <h3>What level of research?</h3>
+            <ul id="researchLevels"></ul>
+            <ul>
+                <li>
+                    <label>
+                        <span>Rider Research</span>
+                        <input id="riderResearch" value="0">
+                        <span>%</span>
+                    </label>
+                </li>
+            </ul>
+            <h2>Target for the Calculator:</h2>
             <label>
                 <select>
                     <option>Score</option>
@@ -69,7 +113,9 @@
                 <input type="number">
             </label>
         </div>
-    </div>
+    </main>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/AutoFortPlanner.e31bb0bc.js"></script>
 </body>
 </html>
