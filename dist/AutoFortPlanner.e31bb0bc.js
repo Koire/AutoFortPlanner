@@ -140,17 +140,34 @@ function docReady(fn) {
   } else {
     document.addEventListener("DOMContentLoaded", fn);
   }
-}
+} // docReady(() => M.AutoInit())
 
-docReady(function () {
-  return M.AutoInit();
-});
-var towerSelection = document.getElementById("towerSelector");
+
 var selectedTowers = document.getElementById("selectedTowers");
 var timerSettings = document.getElementById("timerSettings");
 
+var makeAnObserver = function makeAnObserver(element, fn) {
+  var observer = new MutationObserver(function () {
+    if (document.contains(element)) {
+      fn();
+      observer.disconnect();
+    }
+  });
+  observer.observe(document, {
+    attributes: false,
+    childList: true,
+    characterData: false,
+    subtree: true
+  });
+  return observer;
+};
+
 var addATower = function addATower() {
-  var clone = towerSelection.content.cloneNode(true);
+  var clone = document.getElementById("towerSelector").content.cloneNode(true);
+  var select = clone.querySelector("select");
+  makeAnObserver(select, function () {
+    return M.FormSelect.init(select);
+  });
   clone.querySelector("button").addEventListener("click", function () {
     return selectedTowers.appendChild(addATower());
   });
@@ -163,7 +180,21 @@ var timerHrs = [1, 3, 12, 24, 48];
 
 var timerField = function timerField(time, modifier) {
   var clone = document.getElementById("timerSelector").content.cloneNode(true);
-  clone.querySelector("span").textContent = "".concat(time, " ").concat(modifier);
+  var label = clone.querySelector("label");
+  label.textContent = "".concat(time, " ").concat(modifier);
+  clone.querySelector("input").addEventListener('focus', function (e) {
+    return label.classList.add("active");
+  });
+  clone.querySelector("input").addEventListener('blur', function (_ref) {
+    var value = _ref.target.value;
+
+    if (value.length == 0) {
+      label.classList.remove("active");
+    }
+  });
+  makeAnObserver(label, function () {
+    M.updateTextFields();
+  });
   return clone;
 };
 

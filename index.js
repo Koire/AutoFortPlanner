@@ -7,15 +7,27 @@ function docReady(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }
-docReady(() => M.AutoInit())
+// docReady(() => M.AutoInit())
 
 
-const towerSelection = document.getElementById("towerSelector")
 const selectedTowers = document.getElementById("selectedTowers")
 const timerSettings = document.getElementById("timerSettings")
 
+const makeAnObserver = (element, fn) => {
+    const observer = new MutationObserver(() => {
+        if(document.contains(element)) {
+            fn()
+            observer.disconnect()
+        }
+    })
+    observer.observe(document, {attributes: false, childList: true, characterData: false, subtree:true});
+    return observer
+}
+
 const addATower = () => {
-    const clone = towerSelection.content.cloneNode(true)
+    const clone = document.getElementById("towerSelector").content.cloneNode(true)
+    const select = clone.querySelector("select")
+    makeAnObserver(select, () => M.FormSelect.init(select))
     clone.querySelector("button").addEventListener("click", () => selectedTowers.appendChild(addATower()))
     return clone
 }
@@ -27,7 +39,18 @@ const timerHrs = [1,3,12,24,48]
 
 const timerField = (time, modifier) => {
     const clone = document.getElementById("timerSelector").content.cloneNode(true)
-    clone.querySelector("span").textContent = `${time} ${modifier}`
+    const label = clone.querySelector("label")
+    label.textContent = `${time} ${modifier}`
+    clone.querySelector("input").addEventListener('focus', e => label.classList.add("active"))
+    clone.querySelector("input").addEventListener('blur', ({target: {value}}) => {
+        if(value.length == 0){
+            label.classList.remove("active")
+        }
+    })
+    makeAnObserver(label, () =>{
+        M.updateTextFields()
+    })
+
     return clone
 }
 
