@@ -43,20 +43,19 @@ const timerMins = [1,3,15,30]
 const timerHrs = [1,3,12,24,48]
 
 const timerField = (time, modifier) => {
-    const clone = document.getElementById("timerSelector").content.cloneNode(true)
-    const label = clone.querySelector("label")
-    label.textContent = `${time} ${modifier}`
-    clone.querySelector("input").addEventListener('focus', e => label.classList.add("active"))
-    clone.querySelector("input").addEventListener('blur', ({target: {value}}) => {
-        if(value.length === 0){
-            label.classList.remove("active")
-        }
-    })
-    makeAnObserver(label, () =>{
-        M.updateTextFields()
-    })
-
-    return clone
+    const label = h("label", {}, `${time} ${modifier}`)
+    return h("li", {class:"collection-item"}, [
+        h("div", {class:"row"}, [
+            h("div", {class:"input-field"}, [
+                label,
+                h("input", {
+                    type: "number",
+                    onBlur: ({target: {value}}) => value.length === 0 && label.classList.remove("active"),
+                    onFocus: e => label.classList.add("active")
+                })
+            ])
+        ])
+    ])
 }
 
 

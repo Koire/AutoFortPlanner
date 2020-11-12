@@ -23972,23 +23972,23 @@ var timerMins = [1, 3, 15, 30];
 var timerHrs = [1, 3, 12, 24, 48];
 
 var timerField = function timerField(time, modifier) {
-  var clone = document.getElementById("timerSelector").content.cloneNode(true);
-  var label = clone.querySelector("label");
-  label.textContent = "".concat(time, " ").concat(modifier);
-  clone.querySelector("input").addEventListener('focus', function (e) {
-    return label.classList.add("active");
-  });
-  clone.querySelector("input").addEventListener('blur', function (_ref) {
-    var value = _ref.target.value;
-
-    if (value.length === 0) {
-      label.classList.remove("active");
+  var label = (0, _h.h)("label", {}, "".concat(time, " ").concat(modifier));
+  return (0, _h.h)("li", {
+    class: "collection-item"
+  }, [(0, _h.h)("div", {
+    class: "row"
+  }, [(0, _h.h)("div", {
+    class: "input-field"
+  }, [label, (0, _h.h)("input", {
+    type: "number",
+    onBlur: function onBlur(_ref) {
+      var value = _ref.target.value;
+      return value.length === 0 && label.classList.remove("active");
+    },
+    onFocus: function onFocus(e) {
+      return label.classList.add("active");
     }
-  });
-  (0, _MaterializeHelpers2.makeAnObserver)(label, function () {
-    M.updateTextFields();
-  });
-  return clone;
+  })])])]);
 };
 
 timerMins.forEach(function (time) {
