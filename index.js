@@ -1,7 +1,6 @@
 import {TowerData} from "./rawData.js";
-import {AutoInitM} from "./lib/MaterializeHelpers.js";
+import {AutoInitM, makeAnObserver} from "./lib/MaterializeHelpers.js";
 import {h} from "./lib/h.js"
-import {makeAnObserver} from "./lib/MaterializeHelpers.js";
 
 AutoInitM()
 

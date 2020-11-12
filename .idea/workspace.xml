@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0292d5cc-67bc-4ece-bd9b-505db2e77113" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.cache/1c/0bcfd767a28b0c9b5250a2769a0243.json" beforeDir="false" afterPath="$PROJECT_DIR$/.cache/1c/0bcfd767a28b0c9b5250a2769a0243.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.cache/e5/1c1ec0847f51532e95e26b1c2945ad.json" beforeDir="false" afterPath="$PROJECT_DIR$/.cache/e5/1c1ec0847f51532e95e26b1c2945ad.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/AutoFortPlanner.e31bb0bc.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/AutoFortPlanner.e31bb0bc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/AutoFortPlanner.e31bb0bc.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/AutoFortPlanner.e31bb0bc.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
