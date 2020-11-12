@@ -1,35 +1,40 @@
-function docReady(fn) {
-    // see if DOM is already available
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-        // call on next available tick
-        setTimeout(fn, 1);
-    } else {
-        document.addEventListener("DOMContentLoaded", fn);
-    }
-}
-docReady(() => M.AutoInit())
+import {TowerData} from "./rawData.js";
+import {AutoInitM} from "./lib/MaterializeHelpers.js";
+import {h} from "./lib/h.js"
+import {makeAnObserver} from "./lib/MaterializeHelpers";
 
+AutoInitM()
 
 const selectedTowers = document.getElementById("selectedTowers")
 const timerSettings = document.getElementById("timerSettings")
 
-const makeAnObserver = (element, fn) => {
-    const observer = new MutationObserver(() => {
-        if(document.contains(element)) {
-            fn()
-            observer.disconnect()
-        }
-    })
-    observer.observe(document, {attributes: false, childList: true, characterData: false, subtree:true});
-    return observer
-}
 
 const addATower = () => {
-    const clone = document.getElementById("towerSelector").content.cloneNode(true)
-    const select = clone.querySelector("select")
+    const select = h("select", {},
+        Object
+            .keys(TowerData)
+            .sort((a,b) => a.localeCompare(b))
+            .map(towerName => h("option", {value: towerName}, towerName))
+    )
     makeAnObserver(select, () => M.FormSelect.init(select))
-    clone.querySelector("button").addEventListener("click", () => selectedTowers.appendChild(addATower()))
-    return clone
+    return h( "li", {class: "collection-item"}, [
+        h("div", {class: "row"}, [
+            h("div", {class: "input-field col s5"}, [
+                select,
+                h("label", {}, "Tower Type:")
+            ]),
+            h("div", {class: "col s5 input-field"}, [
+                h("input", {type: "number"}),
+                h("label", {}, "Level:")
+            ]),
+            h("div", {class: "col s2 input-field"}, [
+                h("button", {
+                    class: "waves-effect waves-light btn btn-flat cyan",
+                    onClick: () => selectedTowers.appendChild(addATower())
+                    }, "+")
+            ])
+        ])
+    ])
 }
 
 selectedTowers.appendChild(addATower())
