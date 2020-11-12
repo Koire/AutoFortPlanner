@@ -23916,8 +23916,6 @@ var _MaterializeHelpers = require("./lib/MaterializeHelpers.js");
 
 var _h = require("./lib/h.js");
 
-var _MaterializeHelpers2 = require("./lib/MaterializeHelpers");
-
 var _document$getElementB;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -23944,7 +23942,7 @@ var addATower = function addATower() {
       value: towerName
     }, towerName);
   }));
-  (0, _MaterializeHelpers2.makeAnObserver)(select, function () {
+  (0, _MaterializeHelpers.makeAnObserver)(select, function () {
     return M.FormSelect.init(select);
   });
   return (0, _h.h)("li", {
@@ -24007,7 +24005,7 @@ var researchField = function researchField(researchName) {
 };
 
 (_document$getElementB = document.getElementById("researchLevels")).prepend.apply(_document$getElementB, _toConsumableArray(researchLevels.map(researchField)));
-},{"./rawData.js":"rawData.js","./lib/MaterializeHelpers.js":"lib/MaterializeHelpers.js","./lib/h.js":"lib/h.js","./lib/MaterializeHelpers":"lib/MaterializeHelpers.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./rawData.js":"rawData.js","./lib/MaterializeHelpers.js":"lib/MaterializeHelpers.js","./lib/h.js":"lib/h.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
